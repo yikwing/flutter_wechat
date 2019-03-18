@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/constants.dart';
+import 'package:flutter_redux/home_contacts.dart';
 import 'package:flutter_redux/home_found.dart';
 import 'package:flutter_redux/home_me.dart';
 import 'package:flutter_redux/home_wechat.dart';
@@ -77,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     _pages = [
       HomeWechat(),
-      HomeFound(),
+      HomeContacts(),
       HomeFound(),
       HomeMe(),
     ];

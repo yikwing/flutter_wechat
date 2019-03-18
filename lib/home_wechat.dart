@@ -70,7 +70,11 @@ class _HomeWechatState extends State<HomeWechat> {
               print("object");
             },
             title: Text(ConversationPageData.mockConversations[index].title),
-            subtitle: Text(ConversationPageData.mockConversations[index].des),
+            subtitle: Text(
+              ConversationPageData.mockConversations[index].des,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
             leading: _getAvater(index),
             trailing: Text(
               ConversationPageData.mockConversations[index].updateAt,
