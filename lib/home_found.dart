@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_redux/look_a_look.dart';
 
 class HomeFound extends StatefulWidget {
   final Widget child;
@@ -26,9 +28,18 @@ class _HomeFoundState extends State<HomeFound>
       ..add(FoundItem("朋友圈", "ic_social_circle.png"))
       ..add(FoundItem("摇一摇", "ic_shake_phone.png"))
       ..add(FoundItem("漂流瓶", "ic_bottle_msg.png"))
-      // ..add(FoundItem("收藏", "ic_collections.png"))
+      ..add(FoundItem("看一看", "ic_feeds.png"))
       ..add(FoundItem("游戏", "ic_game_entry.png"))
       ..add(FoundItem("小程序", "ic_mini_program.png"));
+  }
+
+  _gotoPage(context, index) {
+    Navigator.push(
+      context,
+      new CupertinoPageRoute<void>(
+        builder: (ctx) => LookaLook(),
+      ),
+    );
   }
 
   @override
@@ -39,6 +50,9 @@ class _HomeFoundState extends State<HomeFound>
           return Container(
             color: Colors.white,
             child: ListTile(
+              onTap: () {
+                _gotoPage(context, index);
+              },
               title: Text(foundItem[index].title),
               leading: Image.asset(
                 'assets/images/' + foundItem[index].url,
