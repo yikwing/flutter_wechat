@@ -10,7 +10,7 @@ class HomeMe extends StatefulWidget {
   _HomeMeState createState() => _HomeMeState();
 }
 
-class _HomeMeState extends State<HomeMe> {
+class _HomeMeState extends State<HomeMe> with AutomaticKeepAliveClientMixin {
   List<FoundItem> foundItem = List();
 
   @override
@@ -72,15 +72,6 @@ class _HomeMeState extends State<HomeMe> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.camera_alt),
-            onPressed: () {},
-          )
-        ],
-      ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -150,4 +141,8 @@ class _HomeMeState extends State<HomeMe> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

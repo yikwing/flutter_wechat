@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_redux/home_found.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:flutter_redux/contact_model.dart';
 
@@ -14,8 +15,10 @@ class HomeContacts extends StatefulWidget {
   _HomeContactsState createState() => _HomeContactsState();
 }
 
-class _HomeContactsState extends State<HomeContacts> {
+class _HomeContactsState extends State<HomeContacts>
+    with AutomaticKeepAliveClientMixin {
   List<ContactInfo> _contacts = List();
+  List<FoundItem> foundItem = List();
 
   int _suspensionHeight = 30;
   int _itemHeight = 60;
@@ -23,6 +26,13 @@ class _HomeContactsState extends State<HomeContacts> {
   @override
   void initState() {
     super.initState();
+
+    foundItem
+      ..add(FoundItem("新的朋友", "ic_new_friend.png"))
+      ..add(FoundItem("群聊", "ic_group_chat.png"))
+      ..add(FoundItem("标签", "ic_tag.png"))
+      ..add(FoundItem("公众号", "ic_public_account.png"));
+
     loadData();
   }
 
@@ -88,25 +98,48 @@ class _HomeContactsState extends State<HomeContacts> {
     );
   }
 
+  Widget _getItem(index) {
+    return ListTile(
+      title: Text(foundItem[index].title),
+      leading: Container(
+        width: 42,
+        height: 42,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              'assets/images/' + foundItem[index].url,
+            ),
+          ),
+          borderRadius: BorderRadius.circular(7.0),
+        ),
+      ),
+      trailing: Icon(Icons.keyboard_arrow_right),
+      onTap: () {
+        print('object');
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.grey[200],
-        title: Text('通讯录'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.add_circle_outline),
-            onPressed: () {},
-          ),
-        ],
-        elevation: 0.0,
-      ),
       body: AzListView(
+        header: AzListViewHeader(
+            builder: (BuildContext context) {
+              return ListView.separated(
+                itemBuilder: (BuildContext context, int index) {
+                  return _getItem(index);
+                },
+                itemCount: foundItem.length,
+                separatorBuilder: (BuildContext context, int index) {
+                  return Divider(
+                    height: 0.0,
+                    indent: 70,
+                  );
+                },
+              );
+            },
+            height: 225),
         data: _contacts,
         itemBuilder: (context, model) => _buildListItem(model),
         isUseRealIndex: true,
@@ -148,4 +181,8 @@ class _HomeContactsState extends State<HomeContacts> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

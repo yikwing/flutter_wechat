@@ -15,7 +15,8 @@ class FoundItem {
   FoundItem(this.title, this.url);
 }
 
-class _HomeFoundState extends State<HomeFound> {
+class _HomeFoundState extends State<HomeFound>
+    with AutomaticKeepAliveClientMixin {
   List<FoundItem> foundItem = List();
 
   @override
@@ -33,21 +34,6 @@ class _HomeFoundState extends State<HomeFound> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.grey[200],
-        title: Text('发现'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.add_circle_outline),
-            onPressed: () {},
-          ),
-        ],
-        elevation: 0.0,
-      ),
       body: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
           return Container(
@@ -72,4 +58,8 @@ class _HomeFoundState extends State<HomeFound> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

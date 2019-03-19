@@ -10,13 +10,13 @@ class HomeWechat extends StatefulWidget {
   _HomeWechatState createState() => _HomeWechatState();
 }
 
-class _HomeWechatState extends State<HomeWechat> {
+class _HomeWechatState extends State<HomeWechat> with AutomaticKeepAliveClientMixin{
   Widget _getAvater(index) {
     if (ConversationPageData.mockConversations[index].avatar
         .startsWith("assets")) {
       return Container(
-          height: 53,
-          width: 53,
+          height: 47,
+          width: 47,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
@@ -29,8 +29,8 @@ class _HomeWechatState extends State<HomeWechat> {
           ));
     } else {
       return Container(
-        height: 53,
-        width: 53,
+        height: 47,
+        width: 47,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: CachedNetworkImageProvider(
@@ -48,21 +48,6 @@ class _HomeWechatState extends State<HomeWechat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.grey[200],
-        title: Text('微信(164)'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.add_circle_outline),
-            onPressed: () {},
-          ),
-        ],
-        elevation: 0.0,
-      ),
       body: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
@@ -92,4 +77,8 @@ class _HomeWechatState extends State<HomeWechat> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

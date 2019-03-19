@@ -26,7 +26,6 @@ dependencies:
   cached_network_image: ^0.7.0
   lpinyin: ^1.0.7
   azlistview: ^0.1.0
-  flutter_flipperkit: ^0.0.6
 
 dev_dependencies:
   flutter_test:
