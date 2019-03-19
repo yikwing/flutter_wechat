@@ -16,4 +16,5 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 ![flutter_wechat]["http://jier.ys168.shop/image/markdown/flutter_wechat.gif"]
+![avatar](http://jier.ys168.shop/image/markdown/flutter_wechat.gif)
 
