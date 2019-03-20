@@ -86,7 +86,7 @@ class OkhttpUtil {
 
       if (callBack != null) {
         callBack(response.data);
-        print("<net> response data:" + response.data);
+        print("<net> response data:" + response.data.toString());
       }
     } catch (exception) {
       _handError(errorCallBack, exception.toString());

@@ -47,8 +47,10 @@ class _HomeFoundState extends State<HomeFound>
     return Scaffold(
       body: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
-          return Container(
+          return Card(
+            margin: EdgeInsets.all(0),
             color: Colors.white,
+            elevation: 0.0,
             child: ListTile(
               onTap: () {
                 _gotoPage(context, index);

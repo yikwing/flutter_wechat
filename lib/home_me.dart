@@ -29,8 +29,10 @@ class _HomeMeState extends State<HomeMe> with AutomaticKeepAliveClientMixin {
 
   Widget _getItem(index) {
     if (foundItem[index].title != "") {
-      return Container(
+      return Card(
+        margin: EdgeInsets.all(0),
         color: Colors.white,
+        elevation: 0.0,
         child: ListTile(
           title: Text(foundItem[index].title),
           leading: Image.asset(
@@ -39,6 +41,7 @@ class _HomeMeState extends State<HomeMe> with AutomaticKeepAliveClientMixin {
             height: 25,
           ),
           trailing: Icon(Icons.keyboard_arrow_right),
+          onTap: () {},
         ),
       );
     } else {
