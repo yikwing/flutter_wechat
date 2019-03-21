@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:cookie_jar/cookie_jar.dart';
@@ -18,7 +19,7 @@ class OkhttpUtil {
 
   //post请求
   static void post(String url, Function callBack,
-      {Map<String, String> params, Function errorCallBack}) async {
+      {Map<String, Object> params, Function errorCallBack}) async {
     _request(url, callBack,
         method: POST, params: params, errorCallBack: errorCallBack);
   }
@@ -27,7 +28,7 @@ class OkhttpUtil {
   //公共代码部分
   static void _request(String url, Function callBack,
       {String method,
-      Map<String, String> params,
+      Map<String, Object> params,
       Function errorCallBack}) async {
     print("<net> url :<" + method + ">" + url);
 
@@ -85,7 +86,9 @@ class OkhttpUtil {
       }
 
       if (callBack != null) {
-        callBack(response.data);
+        callBack((response.data is String)
+            ? json.decode(response.data)
+            : response.data);
         print("<net> response data:" + response.data.toString());
       }
     } catch (exception) {

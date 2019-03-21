@@ -28,7 +28,7 @@ packages:
       name: azlistview
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.0"
+    version: "0.1.1"
   boolean_selector:
     dependency: transitive
     description:
