@@ -71,6 +71,7 @@ class _BasicAppbarState extends State<BasicAppbar> {
                 ),
               ];
             },
+            offset: Offset(0, 54),
             icon: Icon(Icons.add_circle_outline),
             onSelected: (ActionItems selected) {
               print('点击的是$selected');
