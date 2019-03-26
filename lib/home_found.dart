@@ -1,6 +1,7 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_redux/look_a_look.dart';
+import 'package:flutter_redux/routers/routes.dart';
 
 class HomeFound extends StatefulWidget {
   final Widget child;
@@ -34,11 +35,16 @@ class _HomeFoundState extends State<HomeFound>
   }
 
   _gotoPage(context, index) {
-    Navigator.push(
+    // Navigator.push(
+    //   context,
+    //   new CupertinoPageRoute<void>(
+    //     builder: (ctx) => LookaLook(),
+    //   ),
+    // );
+    Routes.router.navigateTo(
       context,
-      new CupertinoPageRoute<void>(
-        builder: (ctx) => LookaLook(),
-      ),
+      '${Routes.look}',
+      transition: TransitionType.fadeIn,
     );
   }
 
