@@ -79,6 +79,5 @@ class _HomeWechatState extends State<HomeWechat> with AutomaticKeepAliveClientMi
   }
 
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }

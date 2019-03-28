@@ -1,11 +1,7 @@
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
-import 'package:path_provider/path_provider.dart';
 
-//要查网络请求的日志可以使用过滤<net>
 class OkhttpUtil {
   static const String GET = "get";
   static const String POST = "post";

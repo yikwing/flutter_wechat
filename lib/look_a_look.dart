@@ -187,6 +187,5 @@ class _LookaLookState extends State<LookaLook>
   }
 
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }
