@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_redux/config/project_config.dart';
 
 class OkhttpUtil {
   static const String GET = "get";
@@ -20,37 +21,38 @@ class OkhttpUtil {
         method: POST, params: params, errorCallBack: errorCallBack);
   }
 
-  //具体的还是要看返回数据的基本结构
   //公共代码部分
   static void _request(String url, Function callBack,
       {String method,
       Map<String, Object> params,
       Function errorCallBack}) async {
-    print("<net> url :<" + method + ">" + url);
-
-    if (params != null && params.isNotEmpty) {
-      print("<net> params :" + params.toString());
-    }
-
-    String errorMsg = "";
+    String errorMsg;
     int statusCode;
 
-    try {
-      var dio = new Dio();
-      // Directory tempDir = await getTemporaryDirectory();
-      // String tempPath = tempDir.path;
-      // print(tempPath);
-      // dio.interceptors.add(CookieManager(PersistCookieJar(dir: tempPath)));
+    Dio dio = new Dio();
 
-      // (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-      //     (HttpClient client) {
-      //   client.findProxy = (uri) {
-      //     //proxy all request to localhost:8888
-      //     return "PROXY 192.168.0.108:8888";
-      //   };
-      //   client.badCertificateCallback =
-      //       (X509Certificate cert, String host, int port) => true;
-      // };
+    if (Config.debug) {
+      dio.interceptors
+          .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
+        print("\n================== 请求数据 ==========================");
+        print("url = ${options.uri.toString()}");
+        print("headers = ${options.headers}");
+        print("params = ${options.data}");
+      }, onResponse: (Response response) {
+        print("\n================== 响应数据 ==========================");
+        print("code = ${response.statusCode}");
+        print("data = ${response.data}");
+        print("\n================== 响应结束 ==========================");
+      }, onError: (DioError e) {
+        print("\n================== 错误响应数据 ======================");
+        print("type = ${e.type}");
+        print("message = ${e.message}");
+        print("stackTrace = ${e.stackTrace}");
+        print("\n");
+      }));
+    }
+
+    try {
       Response response;
       if (method == GET) {
         //组合GET请求的参数
@@ -75,7 +77,7 @@ class OkhttpUtil {
       statusCode = response.statusCode;
 
       //处理错误部分
-      if (statusCode < 0) {
+      if (statusCode != 200) {
         errorMsg = "网络请求错误,状态码:" + statusCode.toString();
         _handError(errorCallBack, errorMsg);
         return;
@@ -85,7 +87,6 @@ class OkhttpUtil {
         callBack((response.data is String)
             ? json.decode(response.data)
             : response.data);
-        print("<net> response data:" + response.data.toString());
       }
     } catch (exception) {
       _handError(errorCallBack, exception.toString());
