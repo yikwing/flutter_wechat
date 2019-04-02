@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_redux/home_page.dart';
 import 'package:flutter_redux/routers/routes.dart';
 import 'package:flutter_flipperkit/flutter_flipperkit.dart';
+import 'package:flutter_redux/splash.dart';
 
 void main() {
   final router = new Router();
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         primaryColor: Colors.white,
       ),
-      home: MyHomePage(),
+      home: SplashPage(),
       onGenerateRoute: Routes.router.generator,
     );
   }
