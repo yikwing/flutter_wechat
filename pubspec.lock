@@ -210,7 +210,7 @@ packages:
       name: flutter_flipperkit
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.0.8"
+    version: "0.0.9"
   flutter_icons:
     dependency: "direct main"
     description:
