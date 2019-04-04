@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jpush/flutter_jpush.dart';
 import 'package:flutter_redux/basic_appbar.dart';
 import 'package:flutter_redux/constants.dart';
 import 'package:flutter_redux/home_contacts.dart';
@@ -36,6 +37,25 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+
+    FlutterJPush.addReceiveNotificationListener(
+        (JPushNotification notification) {
+      /// 收到推送
+      print("收到推送提醒: ${notification.content}");
+    });
+
+    FlutterJPush.addReceiveOpenNotificationListener(
+        (JPushNotification notification) {
+      print("打开了推送提醒: $notification");
+
+      /// 打开了推送提醒
+    });
+
+    FlutterJPush.addReceiveCustomMsgListener((JPushMessage msg) {
+      print("收到推送消息提醒: $msg");
+
+      /// 打开了推送提醒
+    });
 
     _pageController = PageController(initialPage: _currentIndex);
 

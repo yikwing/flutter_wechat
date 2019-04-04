@@ -44,6 +44,12 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+               JPUSH_PKGNAME : applicationId,
+               JPUSH_APPKEY : "fa17757a4eb0c0edb3cb5460", //JPush上注册的包名对应的appkey.
+               JPUSH_CHANNEL : "developer-default",
+        ]
     }
 
     buildTypes {
