@@ -27,8 +27,8 @@ dependencies:
   cached_network_image: ^0.7.0
   lpinyin: ^1.0.7
   azlistview: ^0.1.1
-  webview_flutter: ^0.3.5+2
-  dio: ^2.1.0
+  webview_flutter: ^0.3.6
+  dio: ^2.1.2
   common_utils: ^1.1.1
   provide: ^1.0.2
   flutter_jpush: ^0.0.4
